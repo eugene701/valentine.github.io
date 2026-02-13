@@ -3,82 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Valentine</title>
-
 <style>
 body {
-    margin: 0;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #ff9ec4, #ff4d94);
+    height: 100vh;
     font-family: Arial, sans-serif;
+    background: pink;
+    margin: 0;
 }
 
 .card {
     background: white;
     padding: 50px;
-    border-radius: 25px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    position: relative;
-    width: 320px;
-}
-
-h1 {
-    color: #ff2e7a;
-}
-
-.buttons {
-    margin-top: 40px;
-    position: relative;
-    height: 120px;
 }
 
 button {
     padding: 15px 30px;
     font-size: 18px;
     border: none;
-    border-radius: 40px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: 0.2s ease;
-    position: absolute;
+    margin: 20px;
 }
 
 #yesBtn {
-    background: hotpink;
+    background-color: hotpink;
     color: white;
-    left: 20%;
-}
-
-#yesBtn:hover {
-    transform: scale(1.1);
 }
 
 #noBtn {
-    background: gray;
+    background-color: gray;
     color: white;
     opacity: 0.3;
-    right: 20%;
+    position: relative;
 }
 </style>
 </head>
-
 <body>
 
 <div class="card">
-    <h1>Dear Efekan...<br>Will you be my Valentine? 💌</h1>
-
-    <div class="buttons">
-        <button id="yesBtn">YEAA 💖</button>
-        <button id="noBtn">nah</button>
-    </div>
+    <h1>Dear Efekan..<br>Will you be my Valentine? 💌</h1>
+    <button id="yesBtn">YEAA 💖</button>
+    <button id="noBtn">nah</button>
 </div>
 
 <script>
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
-yesBtn.addEventListener("click", function() {
-    document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:40vh;font-family:Arial;'>YAYYY 💖 I love you!!</h1>";
-    document
+yesBtn.onclick = () => {
+    document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:40vh;'>YAYYY 💖 I love you!!</h1>";
+    document.body.style.background = "#ff4d94";
+};
+
+// Функция, чтобы кнопка "nah" убегала
+function moveNo() {
+    const x = Math.random() * 200 - 100; // ±100px от исходного положения
+    const y = Math.random() * 50 - 25;   // ±25px
+    noBtn.style.transform = translate(${x}px, ${y}px);
+}
+
+// Для мыши и для телефона
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+</script>
+
+</body>
+</html>
