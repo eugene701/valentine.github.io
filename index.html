@@ -1,109 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Valentine</title>
-
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #ff9ec4, #ff4d94);
-        font-family: Arial, sans-serif;
-        overflow: hidden;
-    }
-
-    .card {
-        text-align: center;
-        background: white;
-        padding: 50px;
-        border-radius: 25px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        position: relative;
-        width: 350px;
-    }
-
-    h1 {
-        color: #ff2e7a;
-        font-size: 26px;
-    }
-
-    .buttons {
-        margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        gap: 40px; /* расстояние между кнопками */
-    }
-
-    button {
-        padding: 15px 35px;
-        font-size: 18px;
-        border: none;
-        border-radius: 40px;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-
-    #yesBtn {
-        background-color: hotpink;
-        color: white;
-        box-shadow: 0 5px 15px rgba(255, 20, 147, 0.5);
-    }
-
-    #yesBtn:hover {
-        transform: scale(1.15);
-    }
-
-    #noBtn {
-        background-color: gray;
-        color: white;
-        opacity: 0.3;
-        position: absolute;
-        bottom: 40px;
-        right: 40px;
-    }
-</style>
 </head>
+<body style="text-align:center; margin-top:100px; font-family:Arial;">
 
-<body>
+<h1>Dear Efekan...<br>Will you be my Valentine? 💌</h1>
 
-<div class="card">
-    <h1>Dear Efekan..<br>Will you be my Valentine? 💌</h1>
+<button id="yesBtn" style="padding:15px 30px; font-size:18px; background:pink;">
+YEAA 💖
+</button>
 
-    <div class="buttons">
-        <button id="yesBtn" onclick="yesClicked()">YEAA 💖</button>
-    </div>
-
-    <button id="noBtn">nah</button>
-</div>
+<button id="noBtn" style="padding:15px 30px; font-size:18px; opacity:0.3;">
+nah
+</button>
 
 <script>
-    const noBtn = document.getElementById("noBtn");
+document.getElementById("yesBtn").onclick = function() {
+    alert("YAYYY 💖");
+};
 
-    noBtn.addEventListener("mouseover", () => {
-        const card = document.querySelector(".card");
-        const cardRect = card.getBoundingClientRect();
-
-        const maxX = cardRect.width - noBtn.offsetWidth;
-        const maxY = cardRect.height - noBtn.offsetHeight;
-
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
-
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
-    });
-
-    function yesClicked() {
-        document.body.innerHTML = 
-            <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#ff4d94;color:white;font-size:40px;font-family:Arial;">
-                YAYYY 💖 I love you!!
-            </div>
-        ;
-    }
+document.getElementById("noBtn").onclick = function() {
+    alert("Nice try 😏");
+};
 </script>
 
 </body>
