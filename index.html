@@ -5,20 +5,25 @@
 <title>Valentine</title>
 <style>
 body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     font-family: Arial, sans-serif;
-    background: pink;
-    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9ec4, #ff4d94);
+    position: relative;
 }
 
 .card {
     background: white;
     padding: 50px;
-    border-radius: 20px;
+    border-radius: 25px;
     text-align: center;
+    z-index: 1;
+    position: relative;
 }
 
 button {
@@ -28,6 +33,11 @@ button {
     border-radius: 30px;
     cursor: pointer;
     margin: 20px;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 #yesBtn {
@@ -39,7 +49,41 @@ button {
     background-color: gray;
     color: white;
     opacity: 0.3;
-    position: relative;
+}
+
+/* Сердечки на заднем плане */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: float 5s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(-45deg); opacity: 1;}
+    100% { transform: translateY(-800px) rotate(-45deg); opacity: 0;}
 }
 </style>
 </head>
@@ -55,21 +99,31 @@ button {
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
+// Сообщение при нажатии YEAA
 yesBtn.onclick = () => {
-    document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:40vh;'>YAYYY 💖 I love you!!</h1>";
-    document.body.style.background = "#ff4d94";
-};
-
-// Функция, чтобы кнопка "nah" убегала
-function moveNo() {
-    const x = Math.random() * 200 - 100; // ±100px от исходного положения
-    const y = Math.random() * 50 - 25;   // ±25px
-    noBtn.style.transform = translate(${x}px, ${y}px);
+    alert("I LOVE YOU 💖");
 }
 
-// Для мыши и для телефона
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("click", moveNo);
+// Сообщение при нажатии nah
+noBtn.onclick = () => {
+    alert("Do you wanna be dead?");
+}
+
+// Создание сердечек на заднем плане
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.width = 20 + Math.random() * 20 + "px";
+    heart.style.height = heart.style.width;
+    document.body.appendChild(heart);
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+// Каждые 300ms появляется новое сердечко
+setInterval(createHeart, 300);
 </script>
 
 </body>
